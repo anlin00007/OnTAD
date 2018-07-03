@@ -10,7 +10,7 @@ GNU Scientific Library (https://www.gnu.org/software/gsl/)
 OnTAD is a portable application without requirement of installation. User can simply clone the github repo to get full usage.
 
 ### Examples
-Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/ chr18.matrix).
+Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/chr18.matrix).
 
 The test matrix is from Rao et al, Cell 2014. And it is in Gm12878 with 10kb resolution.
 
