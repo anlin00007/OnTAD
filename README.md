@@ -14,11 +14,13 @@ Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/chr
 
 The test matrix is from Rao et al, Cell 2014. And it is in Gm12878 with 10kb resolution.
 
+```
 OnTAD chr18.matrix -penalty 0.1 -maxsz 200 -o OnTADraw_pen0.1_max200_meannorm_chr18.tad
-
+```
 ### Detailed Usage
+```
 OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-o output_file]
-
+```
 <Hi-C matrix> the n*n Hi-C contact matrix. Both raw and normalized matrix are acceptable
 -penalty <float> The penalty applied in scoring function to select positive TADs. Higher penalty score will result in fewer TADs.
 
