@@ -21,18 +21,22 @@ OnTAD chr18.matrix -penalty 0.1 -maxsz 200 -o OnTADraw_pen0.1_max200_meannorm_ch
 ```
 OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-o output_file]
 ```
-<Hi-C matrix> the n*n Hi-C contact matrix. Both raw and normalized matrix are acceptable
--penalty <float> The penalty applied in scoring function to select positive TADs. Higher penalty score will result in fewer TADs.
+\<Hi-C matrix\> the n*n Hi-C contact matrix. Both raw and normalized matrix are acceptable.
 
--maxsz <int> The maximum size of TADs can be called. The size is determined by number of bins covered in the contact matrix.
+-penalty \<float\> The penalty applied in scoring function to select positive TADs. Higher penalty score will result in fewer TADs.
 
--minsz <int> The minimum size of TADs can be called. The size is determined by number of bins covered in the contact matrix.
+-maxsz \<int\> The maximum size of TADs can be called. The size is determined by number of bins covered in the contact matrix.
 
--o <file path> The file path for the TAD calling results.
+-minsz \<int\> The minimum size of TADs can be called. The size is determined by number of bins covered in the contact matrix.
+
+-o \<file path\> The file path for the TAD calling results.
   
 ### Defaults
+
 -maxsz 200
+
 -minsz 3
+
 -penalty 0.1
 
 ## Versioning
