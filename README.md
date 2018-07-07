@@ -69,3 +69,6 @@ This project is licensed under the MIT License - see the LICENSE.md file for d
 
 ## Acknowledgments
 This work was supported by NIH R01 GM121613 and NIH R24 DK106766 (to YZ and LA), NIH training grant T32 GM102057 (CBIOS training program to The Pennsylvania State University), a Huck Graduate Research Innovation Grant to TY, and by NIH grants R01GM109453 (to QL).
+
+## Contact
+Lin An (lua137 {at} psu {dot} edu)
