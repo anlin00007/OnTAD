@@ -7,7 +7,11 @@ OnTAD is an Optimal Nested TAD caller for Hi-C data
 GNU Scientific Library (https://www.gnu.org/software/gsl/)
 
 ### Installing
-OnTAD is a portable application without requirement of installation. User can simply clone the github repo to get full usage.
+Here are two options to use OnTAD in local:
+
+1. User can download the executable file and specify the path of GSL in environment.
+
+2. OnTAD can be complied with source code in the /src folder. Please specify the path of GSL in the makefile.
 
 ### Examples
 Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/chr18.matrix).
@@ -18,10 +22,10 @@ The test matrix is from Rao et al, Cell 2014. And it is in Gm12878 with 10kb res
 OnTAD chr18.matrix -penalty 0.1 -maxsz 200 -o OnTADraw_pen0.1_max200_meannorm_chr18.tad
 ```
 ### Results
-The OnTAD output has six columns:
+The OnTAD output has five columns:
 
 ```
-startpos  endpos  TADlevel  score1  Overlaplevel score2
+startpos  endpos  TADlevel  score1  score2
 ```
 
 Explanations of each field are as follows:
@@ -32,9 +36,8 @@ Explanations of each field are as follows:
   
   score1: the confidence score.
   
-  Overlaplevel & score2 are in testing and not included in the current analysis.
+  score2 are in testing and not included in the current analysis.
   
-###NOTE: For all analysis in the manuscript, we used result with overlaplevel equals 0.
 
 ### Detailed Usage
 ```
