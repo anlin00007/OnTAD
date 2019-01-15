@@ -4,14 +4,24 @@ OnTAD is an Optimal Nested TAD caller for Hi-C data
 ## Getting Started
 
 ### Prerequisites
-GNU Scientific Library (https://www.gnu.org/software/gsl/)
+GNU Scientific Library (https://www.gnu.org/software/gsl/) version 2.3
 
-### Installing
+
+### Installing (Linux environment)
 Here are two options to use OnTAD in local:
 
-1. User can download the executable file and specify the path of GSL in environment.
+1. Users can download the executable file and specify the path of gsl in environment.
 
-2. OnTAD can be complied with source code in the /src folder. Please specify the path of GSL in the makefile.
+```
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/PathTo/gsl-2.3/lib/
+```
+
+2. OnTAD can be complied with source code in the /src folder. Please specify the path of gsl in the makefile.
+
+```
+sed -i 's/PathTo/your local path of gsl/g' makefile
+make
+```
 
 ### Examples
 Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/chr18.matrix).
@@ -21,6 +31,10 @@ The test matrix is from Rao et al, Cell 2014. And it is in Gm12878 with 10kb res
 ```
 OnTAD chr18.matrix -penalty 0.1 -maxsz 200 -o OnTADraw_pen0.1_max200_meannorm_chr18.tad
 ```
+OnTAD result in Gm12878, chr18: 42.2Mb-44.8Mb (10Kb resolution)
+
+<img src="https://github.com/anlin00007/OnTAD/blob/master/example_figure.png" width="400"/>
+
 ### Results
 The OnTAD output has five columns:
 
@@ -38,6 +52,9 @@ Explanations of each field are as follows:
   
   score2 are in testing and not included in the current analysis.
   
+###Note: current version requires input data in the N * N matrix format and separated by TAB or space.
+
+
 
 ### Detailed Usage
 ```
@@ -52,6 +69,8 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-o output_
 -minsz \<int\> The minimum size of TADs can be called. The size is determined by number of bins covered in the contact matrix.
 
 -o \<file path\> The file path for the TAD calling results.
+
+
   
 ### Defaults
 
@@ -62,7 +81,7 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-o output_
 -penalty 0.1
 
 ## Versioning
-Current version 1.1
+Current version 1.0
 
 ## Reference
 Lin An, Tao Yang, Jiahao Yang, Johannes Nuebler, Qunhua Li*, Yu Zhang*. Hierarchical Domain Structure Reveals the Divergence of Activity among TADs and Boundaries, Biorxiv 2018 (https://www.biorxiv.org/content/early/2018/07/03/361147.1)
