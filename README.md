@@ -13,13 +13,13 @@ Here are two options to use OnTAD in local:
 1. Users can download the executable file and specify the path of gsl in environment.
 
 ```
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/PathTo/gsl-2.3/lib/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/PathToGSL/gsl-2.3/lib/
 ```
 
 2. OnTAD can be complied with source code in the /src folder. Please specify the path of gsl in the makefile.
 
 ```
-sed -i 's/PathTo/your local path of gsl/g' makefile
+sed -i 's/PathToGSL/your local path of gsl/g' makefile
 make
 ```
 
