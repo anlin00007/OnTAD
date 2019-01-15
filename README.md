@@ -14,6 +14,7 @@ Here are two options to use OnTAD in local:
 
 ```
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/PathToGSL/gsl-2.3/lib/
+chmod +x OnTAD
 ```
 
 2. OnTAD can be complied with source code in the /src folder. Please specify the path of gsl in the makefile.
