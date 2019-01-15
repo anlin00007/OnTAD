@@ -23,6 +23,11 @@ sed -i 's/PathTo/your local path of gsl/g' makefile
 make
 ```
 
+To remove OnTAD from your local folder:
+```
+make clean
+```
+
 ### Examples
 Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/chr18.matrix).
 
