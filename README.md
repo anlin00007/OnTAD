@@ -22,6 +22,7 @@ chmod +x OnTAD
 ```
 sed -i 's/PathToGSL/your local path of gsl/g' makefile
 make
+chmod +x OnTAD
 ```
 
 To remove OnTAD from your local folder:
