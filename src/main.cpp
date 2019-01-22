@@ -102,7 +102,9 @@ int main(int argc, char* argv[])
 	runone(data, minsz, maxsz, penalty, timeed, time0);
 
 	char fout[1000];
-	sprintf(fout, "%s.tad", data.fname.c_str());
+        if(foutpref == "")
+            sprintf(fout, "%s.tad", data.fname.c_str());
+       	else sprintf(fout, "%s.tad", foutpref);
 	outputTAD(fout, data.tad);
 
 	printf("Completed!\n\n");
