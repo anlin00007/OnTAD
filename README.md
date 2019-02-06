@@ -55,9 +55,9 @@ Explanations of each field are as follows:
   
   TADlevel: the level of each TAD in the hierarchy. Small value denotes outter TADs and large value denotes inner TADs.
   
-  score1: the confidence score.
+  TADmean: average interaction frequency in each TAD region. (standardized by genomic distance)
   
-  score2 are in testing and not included in the current analysis.
+  TADscore: confidence score for each TAD.
   
 ###Note: current version requires input data in the N * N matrix format and separated by TAB or space.
 
