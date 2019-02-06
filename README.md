@@ -46,7 +46,7 @@ OnTAD result in Gm12878, chr18: 42.2Mb-44.8Mb (10Kb resolution)
 The OnTAD output has five columns:
 
 ```
-startpos  endpos  TADlevel  score1  score2
+startpos  endpos  TADlevel  TADmean  TADscore
 ```
 
 Explanations of each field are as follows:
