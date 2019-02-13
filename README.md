@@ -65,7 +65,7 @@ Explanations of each field are as follows:
 
 ### Detailed Usage
 ```
-OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-o output_file]
+OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <float>] [-lsize <int>] [-o output_file]
 ```
 \<Hi-C matrix\> the n*n Hi-C contact matrix. Both raw and normalized matrix are acceptable.
 
@@ -74,6 +74,10 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-o output_
 -maxsz \<int\> The maximum size of TADs can be called. The size is determined by number of bins covered in the contact matrix.
 
 -minsz \<int\> The minimum size of TADs can be called. The size is determined by number of bins covered in the contact matrix.
+
+-ldiff \<float\> The cut-off to determine local minimum. (local maximum - local minimum >= ldiff\*std)
+
+-lsize \<int\> The local region size that used to determine local minimum
 
 -o \<file path\> The file path for the TAD calling results.
 
@@ -86,6 +90,10 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-o output_
 -minsz 3
 
 -penalty 0.1
+
+-ldiff 1.96
+
+-lsize 5
 
 ## Versioning
 Current version 1.0
