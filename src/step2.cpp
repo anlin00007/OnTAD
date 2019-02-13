@@ -35,9 +35,9 @@ void getScore(vector<vector<double> > const &sx, int maxsz, vector<vector<double
 	}	
 }
 
-void calMins(vector<vector<double> > const &score, vector<vector<bool> > &lm) //compare score for each bin with adjacent bins and determine local minimum
+void calMins(vector<vector<double> > const &score, vector<vector<bool> > &lm, int hsz, double ldiff) //compare score for each bin with adjacent bins and determine local minimum
 {	int l = (int)score.size(), n = (int)score[0].size();
-	int hsz = 5;
+	//int hsz =5;
 	int i, j, k;
 	lm.clear();
 	lm.resize(l, vector<bool>(n, false));
@@ -62,7 +62,7 @@ void calMins(vector<vector<double> > const &score, vector<vector<bool> > &lm) //
 		}
 		m /= (double)((int)map.size() - 1);
 		s = sqrt(s / (double)((int)map.size() - 1) - m * m);
-		double cut = s / sqrt((double)hsz) * 3.89; ///1,96std from mean
+		double cut = s * ldiff;/// sqrt((double)hsz) * 3.89; ///1,96std from mean
 		for(j = 0; j < (int)map.size(); j++)
 		{	double mins = score[map[j]][i], maxs = mins;
 			for(k = max(0, j - hsz); k < min((int)map.size(), j + hsz + 1); k++)

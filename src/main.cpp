@@ -11,7 +11,7 @@ clock_t time0, timest, timeed;
    Input: data
    Output: data with distance effect removed
 **/
-void processData(DATA &data, int maxsz, bool usemean)
+void processData(DATA &data, int maxsz, bool usemean, int hsz, double ldiff)
 {
 	int i, j, k, l;
 	vector<vector<double> > sx, sc;
@@ -31,7 +31,7 @@ void processData(DATA &data, int maxsz, bool usemean)
 	timest = timeed;
 
 	printf("Find local min:\n"); fflush(stdout);
-	calMins(sc, lm);
+	calMins(sc, lm, hsz,ldiff);
 	setPair(lm, data.sel);
 	timeed = clock();
 	printf(" Done %5.3fsec (%5.3fsec)\n", (double)(timeed-timest)/1e6, (double)(timeed-time0)/1e6); fflush(stdout);
@@ -48,8 +48,8 @@ void processData(DATA &data, int maxsz, bool usemean)
 int main(int argc, char* argv[])
 {
 	int i, j, k, l; 
-	int maxsz = 200, minsz = 3;
-	double penalty = 0.1;
+	int maxsz = 200, minsz = 3, hsz=5;
+	double penalty = 0.1, ldiff=1.96;
 	
 	string fin;
 	char const *foutpref = "";
@@ -68,6 +68,14 @@ int main(int argc, char* argv[])
             }
             else if(strcmp(argv[i], "-minsz") == 0)
             {       minsz = max(1, atoi(argv[i + 1]));
+                i++;
+            }
+            else if(strcmp(argv[i], "-neighborsize") == 0)
+            {       hsz = atoi(argv[i + 1]);
+                i++;
+            }
+            else if(strcmp(argv[i], "-localdiff") == 0)
+            {       ldiff = atoi(argv[i + 1]);
                 i++;
             }
             else if(strcmp(argv[i], "-o") == 0)
@@ -96,7 +104,7 @@ int main(int argc, char* argv[])
 	loadMatrix(fin.c_str(), data.x, maxsz * 2);
 	timeed = clock();
 	printf(" Done %5.3fsec (%5.3fsec)\n", (double)(timeed-timest)/1e6, (double)(timeed-time0)/1e6); fflush(stdout);
-	processData(data, maxsz, usemean);
+	processData(data, maxsz, usemean, hsz, ldiff);
 	printf("\n");
 	timeed = clock();
 	runone(data, minsz, maxsz, penalty, timeed, time0);
