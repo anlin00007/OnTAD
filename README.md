@@ -31,12 +31,12 @@ make clean
 ```
 
 ### Examples
-Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/chr18.matrix).
+Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/chr18_KRnorm.matrix).
 
 The test matrix is from Rao et al, Cell 2014. And it is in Gm12878 with 10kb resolution.
 
 ```
-OnTAD chr18.matrix -penalty 0.1 -maxsz 200 -o OnTADraw_pen0.1_max200_meannorm_chr18.tad
+OnTAD chr18_KRnorm.matrix -penalty 0.1 -maxsz 200 -o OnTAD_KRnorm_pen0.1_max200_chr18.tad
 ```
 OnTAD result in Gm12878, chr18: 42.2Mb-44.8Mb (10Kb resolution)
 
