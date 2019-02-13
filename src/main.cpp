@@ -70,11 +70,11 @@ int main(int argc, char* argv[])
             {       minsz = max(1, atoi(argv[i + 1]));
                 i++;
             }
-            else if(strcmp(argv[i], "-neighborsize") == 0)
+            else if(strcmp(argv[i], "-lsize") == 0)
             {       hsz = atoi(argv[i + 1]);
                 i++;
             }
-            else if(strcmp(argv[i], "-localdiff") == 0)
+            else if(strcmp(argv[i], "-ldiff") == 0)
             {       ldiff = atoi(argv[i + 1]);
                 i++;
             }
@@ -95,7 +95,7 @@ int main(int argc, char* argv[])
         }
 
 	time0 = clock();
-	printf("\nOnTAD v1.0:\nmaxsz=%d, minsz=%d, penalty=%5.3f\n\n", maxsz, minsz, penalty);
+	printf("\nOnTAD v1.0:\nmaxsz=%d, minsz=%d, penalty=%5.3f, lsize=%d, ldiff=%5.3f\n\n", maxsz, minsz, penalty, hsz, ldiff);
 	DATA data;
 
 	data.fname = fin;
