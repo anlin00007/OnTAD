@@ -31,7 +31,7 @@ make clean
 ```
 
 ### Examples
-Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/chr18_KRnorm.matrix).
+Call hierarchical TADs from the test matrix (http://bx.psu.edu/~lua137/OnTAD/chr18_KR.matrix).
 
 The test matrix is from Rao et al, Cell 2014. And it is in Gm12878 with 10kb resolution.
 
