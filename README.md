@@ -77,7 +77,7 @@ Explanations of each field are as follows:
 
 ### Detailed Usage
 ```
-OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <float>] [-lsize <int>] [-o output_file]
+OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <float>] [-lsize <int>] [-bedout <chrnum> <int>] [-o output_file]
 ```
 \<Hi-C matrix\> the n*n Hi-C contact matrix. Both raw and normalized matrix are acceptable.
 
