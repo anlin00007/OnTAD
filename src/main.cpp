@@ -3,6 +3,7 @@
 #include "./step3.h"
 #include "./step4.h"
 #include "./common.h"
+#include <regex>
 
 using namespace std;
 clock_t time0, timest, timeed;
@@ -54,7 +55,9 @@ int main(int argc, char* argv[])
 	string fin;
 	char const *foutpref = "";
 	bool usemean = true;
-
+	char *chrnum;
+	int res;
+	bool bedout = false;
 	bool input_in = false;
         for(i = 1; i < argc; i++)
         {
@@ -82,6 +85,26 @@ int main(int argc, char* argv[])
             {       foutpref = argv[i + 1];
                 i++;
             }
+	    else if(strcmp(argv[i], "-bedout") == 0)
+	    {   bedout = true;
+		chrnum = argv[i+1];
+		regex chrreg("(chr)([[:digit:]]+)");
+		if ( regex_match(chrnum, chrreg) ){
+			i++;
+		}else{
+			printf("Error: chrnum is required and must be valid\n");
+			return -1;
+		}
+		
+		res = atoi(argv[i+1]);
+		regex resreg("[[:digit:]]+");
+                if ( regex_match(argv[i+1], resreg) ){
+                        i++;
+                }else{
+                        printf("Error: resolution is required and must be valid\n");
+                        return -1;
+                }
+	    }
             else
             {       
         	if(!input_in){
@@ -109,13 +132,20 @@ int main(int argc, char* argv[])
 	timeed = clock();
 	runone(data, minsz, maxsz, penalty, timeed, time0);
 
-	char fout[1000];
+	char fout[100];
+	char foutbed[120];
         if(foutpref == "")
             sprintf(fout, "%s.tad", data.fname.c_str());
        	else sprintf(fout, "%s.tad", foutpref);
 	outputTAD(fout, data.tad);
-
+	if(bedout == true)
+	    if(foutpref == "")
+		sprintf(foutbed, "%s.bed", data.fname.c_str());
+	    else sprintf(foutbed, "%s.bed", foutpref);
+	    outputBED(foutbed, data.tad, chrnum, res);	
+	
 	printf("Completed!\n\n");
+	printf("Output to %s\n\n", fout);
 	timeed = clock();
 	printf("Total run time: %5.3fsec\n\n", (double)(timeed-time0)/1e6); fflush(stdout);
 

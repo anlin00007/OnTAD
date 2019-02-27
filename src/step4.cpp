@@ -1,6 +1,7 @@
 #include "step4.h"
 #include "step2.h"
 #include "common.h"
+#include <map>
 vector<vector<double> > S, M;
 vector<vector<int> > B;
 /*---------------------------------------------------------------*/
@@ -232,4 +233,27 @@ void outputTAD(char *fname, TAD const &tad)
 	{	fprintf(f, "%d\t%d\t%d\t%5.3f\t%5.3f\n", tad.bound[j][0] + 1, tad.bound[j][1] + 1, tad.level[j], tad.mean[j], tad.score[j]); 
 	}
 	fclose(f);
+}
+
+void outputBED(char *fname, TAD const &tad, char *chrnum, int res)
+{
+        int j;
+	int tl;
+	std::map <int, const char*> color_list;
+	color_list[1] = "56,108,176";
+	color_list[2] = "127,201,127";
+	color_list[3] = "190,174,212";
+	color_list[4] = "253,192,134";
+	color_list[5] = "255,0,0";
+        FILE *f = fopen(fname, "w");
+	fprintf(f,"track name=\"OnTAD %s\" description=\"OnTAD %s\" visibility=2 itemRgb=\"On\"\n", chrnum, chrnum);
+        for(j = 1; j < (int)( tad.bound.size() ); j++)
+        {       
+		if (tad.level[j] >=5) 
+		   tl = 5;
+		else
+		   tl = tad.level[j];
+		fprintf(f, "%s\t%d\t%d\t%d\t0\t.\t%d\t%d\t%s\n", chrnum, (tad.bound[j][0] + 1)*res, (tad.bound[j][1] + 1)*res, j, (tad.bound[j][0] + 1)*res, (tad.bound[j][1] + 1)*res, color_list[tl]);
+        }
+        fclose(f);
 }
