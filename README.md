@@ -50,7 +50,7 @@ Each tad region is marked by a specific color corresponding to the tad level:
 
 An example of genome browser view in mouse G1E-ER4 chr19:
 
-<img src="https://github.com/anlin00007/OnTAD/blob/master/example_figure3.png" width="400"/>
+<img src="https://github.com/anlin00007/OnTAD/blob/master/example_figure3.png" width="800"/>
 
 *The Hi-C heatmap view is from 3D genome browser.
 
