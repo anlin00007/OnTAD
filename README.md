@@ -42,6 +42,18 @@ OnTAD result in Gm12878, chr18: 42.2Mb-44.8Mb (10Kb resolution)
 
 <img src="https://github.com/anlin00007/OnTAD/blob/master/example_figure.png" width="400"/>
 
+Now added new optional output: genome browser compatible bed file.
+It provides an easy way for users to visualize their results.
+Each tad region is marked by a specific color corresponding to the tad level:
+
+<img src="https://github.com/anlin00007/OnTAD/blob/master/example_figure2.png" width="400"/>
+
+An example of genome browser view in mouse G1E-ER4 chr19:
+
+<img src="https://github.com/anlin00007/OnTAD/blob/master/example_figure3.png" width="400"/>
+
+*The Hi-C heatmap view is from 3D genome browser.
+
 ### Results
 The OnTAD output has five columns:
 
@@ -79,6 +91,8 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 
 -lsize \<int\> The local region size that used to determine local minimum
 
+-bedout \<chrnum\> \<int\> The chromosome number and resolution (bp)
+
 -o \<file path\> The file path for the TAD calling results.
 
 
@@ -95,8 +109,11 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 
 -lsize 5
 
+-bedout false
+
+
 ## Versioning
-Current version 1.0
+Current version 1.1; Added option to output genome browser compatible bed format for visualization 
 
 ## Reference
 Lin An, Tao Yang, Jiahao Yang, Johannes Nuebler, Qunhua Li*, Yu Zhang*. Hierarchical Domain Structure Reveals the Divergence of Activity among TADs and Boundaries, Biorxiv 2018 (https://www.biorxiv.org/content/early/2018/07/03/361147.1)
