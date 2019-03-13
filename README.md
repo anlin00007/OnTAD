@@ -24,7 +24,7 @@ cd PathToOnTAD/src
 make
 chmod +x OnTAD
 ```
-##Note: in some cases, static linking is neccessary. If it's needed, please add '-static' in line 5####
+##Note: in some cases, static linking is neccessary. If it's needed, please add '-static' in line 3 of the makefile####
 
 To remove OnTAD from your local folder:
 ```
