@@ -24,6 +24,7 @@ cd PathToOnTAD/src
 make
 chmod +x OnTAD
 ```
+##Note: in some cases, static linking is neccessary. If it's needed, please add '-static' in line 5####
 
 To remove OnTAD from your local folder:
 ```
