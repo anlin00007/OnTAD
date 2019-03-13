@@ -116,7 +116,8 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 
 
 ## Versioning
-version 1.1; Added option to output genome browser compatible bed format for visualization 
+version 1.1; Added option to output genome browser compatible bed format for visualization
+
 Current version 1.2; removed requirement of GSL package
 
 ## Reference
