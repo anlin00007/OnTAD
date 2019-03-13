@@ -1,26 +1,26 @@
 # OnTAD
 OnTAD is an Optimal Nested TAD caller for Hi-C data
 
+##
 ## Getting Started
 
 ### Prerequisites
-GNU Scientific Library (https://www.gnu.org/software/gsl/) version 2.3
+GNU Compiler Collection (https://gcc.gnu.org/) version 7.3.1
 
 
 ### Installing (Linux environment)
 Here are two options to use OnTAD in local:
 
-1. Users can download the executable file and specify the path of gsl in environment.
+1. Users can download the executable file.
 
 ```
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/PathToGSL/gsl-2.3/lib/
 chmod +x OnTAD
 ```
 
-2. OnTAD can be complied with source code in the /src folder. Please specify the path of gsl in the makefile.
+2. OnTAD can be complied with source code in the /src folder. 
 
 ```
-sed -i 's/PathToGSL/your local path of gsl/g' makefile
+cd PathToOnTAD/src
 make
 chmod +x OnTAD
 ```
@@ -77,7 +77,7 @@ Explanations of each field are as follows:
 
 ### Detailed Usage
 ```
-OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <float>] [-lsize <int>] [-bedout <chrnum> <int>] [-o output_file]
+OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <float>] [-lsize <int>] [-bedout <chrnum> <int>] [-log2] [-o output_file]
 ```
 \<Hi-C matrix\> the n*n Hi-C contact matrix. Both raw and normalized matrix are acceptable.
 
@@ -90,6 +90,8 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 -ldiff \<float\> The cut-off to determine local minimum. (local maximum - local minimum >= ldiff\*std)
 
 -lsize \<int\> The local region size that used to determine local minimum
+
+-log2 \<boolean\> if specified, log2(contact frequency) will be used to call TADs.
 
 -bedout \<chrnum\> \<int\> The chromosome number and resolution (bp)
 
@@ -113,7 +115,8 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 
 
 ## Versioning
-Current version 1.1; Added option to output genome browser compatible bed format for visualization 
+version 1.1; Added option to output genome browser compatible bed format for visualization 
+Current version 1.2; removed requirement of GSL package
 
 ## Reference
 Lin An, Tao Yang, Jiahao Yang, Johannes Nuebler, Qunhua Li*, Yu Zhang*. Hierarchical Domain Structure Reveals the Divergence of Activity among TADs and Boundaries, Biorxiv 2018 (https://www.biorxiv.org/content/early/2018/07/03/361147.1)
