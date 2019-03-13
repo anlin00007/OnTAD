@@ -12,7 +12,7 @@ clock_t time0, timest, timeed;
    Input: data
    Output: data with distance effect removed
 **/
-void processData(DATA &data, int maxsz, bool usemean, int hsz, double ldiff)
+void processData(DATA &data, int maxsz, int hsz, double ldiff)
 {
 	int i, j, k, l;
 	vector<vector<double> > sx, sc;
@@ -39,7 +39,7 @@ void processData(DATA &data, int maxsz, bool usemean, int hsz, double ldiff)
 	timest = timeed;
 		
 	printf("Normalize data: "); fflush(stdout);
-	HiCnorm(data.x, maxsz * 2, usemean);
+	HiCnorm(data.x, maxsz * 2);fflush(stdout);
 	timeed = clock();
 	printf(" Done %5.3fsec (%5.3fsec)\n", (double)(timeed-timest)/1e6, (double)(timeed-time0)/1e6); fflush(stdout);
 	timest = timeed;
@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 	
 	string fin;
 	char const *foutpref = "";
-	bool usemean = true;
+	bool takelog2 = false;
 	char *chrnum;
 	int res;
 	bool bedout = false;
@@ -80,6 +80,9 @@ int main(int argc, char* argv[])
             else if(strcmp(argv[i], "-ldiff") == 0)
             {       ldiff = atoi(argv[i + 1]);
                 i++;
+            }
+            else if(strcmp(argv[i], "-log2") == 0)
+            {       takelog2 = true;
             }
             else if(strcmp(argv[i], "-o") == 0)
             {       foutpref = argv[i + 1];
@@ -120,14 +123,20 @@ int main(int argc, char* argv[])
 	time0 = clock();
 	printf("\nOnTAD v1.0:\nmaxsz=%d, minsz=%d, penalty=%5.3f, lsize=%d, ldiff=%5.3f\n\n", maxsz, minsz, penalty, hsz, ldiff);
 	DATA data;
-
+	
+	
 	data.fname = fin;
 	timest = clock();
 	printf("Load %s:\n", fin.c_str()); fflush(stdout);
 	loadMatrix(fin.c_str(), data.x, maxsz * 2);
+	if(takelog2)
+        {for(j = 0; j < (int)data.x.size(); j++)
+            for(k = 0; k < (int)data.x.size(); k++)
+               data.x[j][k] = log2(data.x[j][k] + 1.);
+        }
 	timeed = clock();
 	printf(" Done %5.3fsec (%5.3fsec)\n", (double)(timeed-timest)/1e6, (double)(timeed-time0)/1e6); fflush(stdout);
-	processData(data, maxsz, usemean, hsz, ldiff);
+	processData(data, maxsz, hsz, ldiff);
 	printf("\n");
 	timeed = clock();
 	runone(data, minsz, maxsz, penalty, timeed, time0);
@@ -144,8 +153,8 @@ int main(int argc, char* argv[])
 	    else sprintf(foutbed, "%s.bed", foutpref);
 	    outputBED(foutbed, data.tad, chrnum, res);	
 	
-	printf("Completed!\n\n");
-	printf("Output to %s\n\n", fout);
+	printf("Completed!\n\n");fflush(stdout);
+	printf("Output to %s\n\n", fout);fflush(stdout);
 	timeed = clock();
 	printf("Total run time: %5.3fsec\n\n", (double)(timeed-time0)/1e6); fflush(stdout);
 

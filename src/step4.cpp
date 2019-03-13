@@ -26,7 +26,7 @@ void runone(DATA &data, int minsz, int maxsz, double penalty, clock_t timeed, cl
 	printf(" Done %5.3fsec (%5.3fsec)\n", (double)(timeed-timest)/1e6, (double)(timeed-time0)/1e6); fflush(stdout);
 	timest = timeed;
 
-	printf("Call TADs:\n");	
+	printf("Call TADs:\n");fflush(stdout);
 	dpcall(x, sx, 0, 0, minsz, maxsz, penalty, tsel, tadn, boundn, score, mean);	
 	TAD mytad;
 	getBound(0, L, 0, x, sx, mytad); 
