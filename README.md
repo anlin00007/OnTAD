@@ -1,5 +1,5 @@
 # OnTAD
-OnTAD is an Optimal Nested TAD caller for Hi-C data
+OnTAD is an Optimized Nested TAD caller for Hi-C data
 
 ##
 ## Getting Started
