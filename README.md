@@ -16,6 +16,7 @@ Here are two options to use OnTAD in local:
 ```
 chmod +x OnTAD
 ```
+Note: OnTAD is complied under gcc version 7.3.1. Please load same version to the environment, otherwise use the method below to complie the software.
 
 2. OnTAD can be complied with source code in the /src folder. 
 
