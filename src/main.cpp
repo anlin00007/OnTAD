@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
         }
 
 	time0 = clock();
-	printf("\nOnTAD v1.0:\nmaxsz=%d, minsz=%d, penalty=%5.3f, lsize=%d, ldiff=%5.3f\n\n", maxsz, minsz, penalty, hsz, ldiff);
+	printf("\nOnTAD v1.2:\nmaxsz=%d, minsz=%d, penalty=%5.3f, lsize=%d, ldiff=%5.3f\n\n", maxsz, minsz, penalty, hsz, ldiff);
 	DATA data;
 	
 	
