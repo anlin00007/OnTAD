@@ -59,6 +59,7 @@ int main(int argc, char* argv[])
 	int res;
 	bool bedout = false;
 	bool input_in = false;
+	bool shuffle = false;
         for(i = 1; i < argc; i++)
         {
             if(strcmp(argv[i], "-penalty") == 0)
@@ -78,11 +79,14 @@ int main(int argc, char* argv[])
                 i++;
             }
             else if(strcmp(argv[i], "-ldiff") == 0)
-            {       ldiff = atoi(argv[i + 1]);
+            {       ldiff = atof(argv[i + 1]);
                 i++;
             }
             else if(strcmp(argv[i], "-log2") == 0)
             {       takelog2 = true;
+            }
+            else if(strcmp(argv[i], "-shuffle") == 0)
+            {       shuffle = true;
             }
             else if(strcmp(argv[i], "-o") == 0)
             {       foutpref = argv[i + 1];
@@ -121,7 +125,7 @@ int main(int argc, char* argv[])
         }
 
 	time0 = clock();
-	printf("\nOnTAD v1.2:\nmaxsz=%d, minsz=%d, penalty=%5.3f, lsize=%d, ldiff=%5.3f\n\n", maxsz, minsz, penalty, hsz, ldiff);
+	printf("\nOnTAD v1.2:\nmaxsz=%d, minsz=%d, penalty=%5.3f, lsize=%d, ldiff=%f\n\n", maxsz, minsz, penalty, hsz, ldiff);
 	DATA data;
 	
 	
@@ -129,6 +133,7 @@ int main(int argc, char* argv[])
 	timest = clock();
 	printf("Load %s:\n", fin.c_str()); fflush(stdout);
 	loadMatrix(fin.c_str(), data.x, maxsz * 2);
+
 	if(takelog2)
         {for(j = 0; j < (int)data.x.size(); j++)
             for(k = 0; k < (int)data.x.size(); k++)
@@ -136,6 +141,24 @@ int main(int argc, char* argv[])
         }
 	timeed = clock();
 	printf(" Done %5.3fsec (%5.3fsec)\n", (double)(timeed-timest)/1e6, (double)(timeed-time0)/1e6); fflush(stdout);
+
+	if(shuffle)
+	{
+	srand(time(0));
+	printf("shuffling matrix"); fflush(stdout);
+        int L=(int)data.x.size();
+        for(int I=0;I<=maxsz;I++)
+	{
+          for(int j=0;j<L*10;j++)
+  	  { int index1= rand()%(L - I);
+    	    int index2= rand()%(L - I);
+         
+            swap(data.x[index1][index1+I],data.x[index2][index2+I]);
+            swap(data.x[index1+I][index1], data.x[index2+I][index2]);
+           }
+        }
+	}
+
 	processData(data, maxsz, hsz, ldiff);
 	printf("\n");
 	timeed = clock();
