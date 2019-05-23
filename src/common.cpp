@@ -7,8 +7,8 @@
 #include <algorithm>
 #include <iterator>
 #include <sys/stat.h>
-#define GSL_DLL
-#include <gsl/gsl_cdf.h> //use gaussian p-value function
+//#define GSL_DLL
+//#include <gsl/gsl_cdf.h> //use gaussian p-value function
 #define PBSTR "........................."
 #define PBWIDTH 25 
 using namespace std;
