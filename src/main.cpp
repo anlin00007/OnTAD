@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
 	string fin;
 	char const *foutpref = "";
 	bool takelog2 = false;
-	char *chrnum;
+	char *chrnum = NULL;
 	int res;
 	bool bedout = false;
 	bool input_in = false;
@@ -164,17 +164,18 @@ int main(int argc, char* argv[])
 	timeed = clock();
 	runone(data, minsz, maxsz, penalty, timeed, time0);
 
-	char fout[100];
-	char foutbed[120];
-        if(foutpref == "")
+	char fout[100] = "";
+	char foutbed[120] = "";
+        if(strcmp(foutpref, "") == 0)
             sprintf(fout, "%s.tad", data.fname.c_str());
        	else sprintf(fout, "%s.tad", foutpref);
 	outputTAD(fout, data.tad);
-	if(bedout == true)
-	    if(foutpref == "")
+	if(bedout == true) {
+	    if(strcmp(foutpref, "") == 0)
 		sprintf(foutbed, "%s.bed", data.fname.c_str());
 	    else sprintf(foutbed, "%s.bed", foutpref);
 	    outputBED(foutbed, data.tad, chrnum, res);	
+   }
 	
 	printf("Completed!\n\n");fflush(stdout);
 	printf("Output to %s\n\n", fout);fflush(stdout);
