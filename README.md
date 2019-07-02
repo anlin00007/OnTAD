@@ -45,7 +45,7 @@ TAD calling results will be saved in OnTAD_KRnorm_pen0.1_max200_chr18.tad file.
 New option in version 1.2 -- output TADs in bed format for genome browser virualization:
 
 ```
-OnTAD chr18_KR.matrix -penalty 0.1 -maxsz 200 -o OnTAD_KRnorm_pen0.1_max200_chr18 -bedout 18 10000
+OnTAD chr18_KR.matrix -penalty 0.1 -maxsz 200 -o OnTAD_KRnorm_pen0.1_max200_chr18 -bedout 18 78077248 10000
 ```
 A OnTAD_KRnorm_pen0.1_max200_chr18.bed file will be generated.
 
@@ -88,7 +88,7 @@ Explanations of each field are as follows:
 
 ### Detailed Usage
 ```
-OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <float>] [-lsize <int>] [-bedout <chrnum> <int>] [-log2] [-o output_file]
+OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <float>] [-lsize <int>] [-bedout <chrnum int> <chrlength int> <int>] [-log2] [-o output_file]
 ```
 \<Hi-C matrix\> the n*n Hi-C contact matrix. Both raw and normalized matrix are acceptable.
 
@@ -104,7 +104,7 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 
 -log2 \<boolean\> if specified, log2(contact frequency) will be used to call TADs.
 
--bedout \<chrnum\> \<int\> The chromosome number and resolution (bp), e.g -bedout 3 10000 will generate bedfile with coordinates match chr3 under 10Kb resolution
+-bedout \<chrnum\> \<int\> The chromosome number and resolution (bp), e.g -bedout 3 198022430 10000 will generate bedfile with coordinates match chr3 under 10Kb resolution under reference genome hg19
 
 -o \<file path\> The file path for the TAD calling results.
 
