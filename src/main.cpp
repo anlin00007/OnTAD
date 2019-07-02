@@ -58,6 +58,7 @@ int main(int argc, char* argv[])
 	//char *chrnum;
 	int chrnum;
 	int res;
+	int chrlength;
 	bool bedout = false;
 	bool input_in = false;
 	bool shuffle = false;
@@ -106,6 +107,15 @@ int main(int argc, char* argv[])
 			printf("Error: chrnum is required and must be valid\n");
 			return -1;
 		}
+
+                chrlength = atoi(argv[i+1]);
+                regex chrlengthreg("[[:digit:]]+");
+                if ( regex_match(argv[i+1], chrlengthreg) ){
+                        i++;
+                }else{
+                        printf("Error: chrlength is required and must be valid\n");
+                        return -1;
+                }
 		
 		res = atoi(argv[i+1]);
 		regex resreg("[[:digit:]]+");
@@ -179,7 +189,7 @@ int main(int argc, char* argv[])
 	    if(foutpref == "")
 		sprintf(foutbed, "%s.bed", data.fname.c_str());
 	    else sprintf(foutbed, "%s.bed", foutpref);
-	    outputBED(foutbed, data.tad, chrnum, res);	
+	    outputBED(foutbed, data.tad, chrnum, chrlength, res);	
 	
 	printf("Completed!\n\n");fflush(stdout);
 	printf("Output to %s\n\n", fout);fflush(stdout);

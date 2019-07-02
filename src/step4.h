@@ -20,4 +20,4 @@ void dpcall(vector<vector<double> > const &x, vector<vector<double> > const &sx,
 void getBound(int st, int ed, int level, vector<vector<double > > const &x, vector<vector<double > > const &sx, TAD &tad);
 void outputTAD(char *fname, TAD const &tad);
 void runone(DATA &data, int minsz, int maxsz, double penalty, clock_t timeed, clock_t time0);
-void outputBED(char *fnamebed, TAD const &tad, int chrnum, int res);
+void outputBED(char *fnamebed, TAD const &tad, int chrnum, int chrlength, int res);

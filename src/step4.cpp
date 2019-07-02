@@ -235,10 +235,11 @@ void outputTAD(char *fname, TAD const &tad)
 	fclose(f);
 }
 
-void outputBED(char *fnamebed, TAD const &tad, int chrnum, int res)
+void outputBED(char *fnamebed, TAD const &tad, int chrnum, int chrlength,int res)
 {
         int j;
 	int tl;
+	int endp;
 	std::map <int, const char*> color_list;
 	color_list[1] = "56,108,176";
 	color_list[2] = "127,201,127";
@@ -253,7 +254,11 @@ void outputBED(char *fnamebed, TAD const &tad, int chrnum, int res)
 		   tl = 5;
 		else
 		   tl = tad.level[j];
-		fprintf(bedf, "chr%d\t%d\t%d\t%d\t0\t.\t%d\t%d\t%s\n", chrnum, (tad.bound[j][0] + 1)*res, (tad.bound[j][1] + 1)*res, j, (tad.bound[j][0] + 1)*res, (tad.bound[j][1] + 1)*res, color_list[tl]);
+		if ((tad.bound[j][1] + 1)*res > chrlength)
+		   endp = chrlength;
+		else
+		   endp = (tad.bound[j][1] + 1)*res;
+		fprintf(bedf, "chr%d\t%d\t%d\t%d\t0\t.\t%d\t%d\t%s\n", chrnum, (tad.bound[j][0] + 1)*res, endp, j, (tad.bound[j][0] + 1)*res, endp, color_list[tl]);
         }
         fclose(bedf);
 }
