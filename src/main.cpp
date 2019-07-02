@@ -55,7 +55,8 @@ int main(int argc, char* argv[])
 	string fin;
 	char const *foutpref = "";
 	bool takelog2 = false;
-	char *chrnum;
+	//char *chrnum;
+	int chrnum;
 	int res;
 	bool bedout = false;
 	bool input_in = false;
@@ -94,9 +95,12 @@ int main(int argc, char* argv[])
             }
 	    else if(strcmp(argv[i], "-bedout") == 0)
 	    {   bedout = true;
-		chrnum = argv[i+1];
-		regex chrreg("(chr)([[:digit:]]+)");
-		if ( regex_match(chrnum, chrreg) ){
+		//chrnum = argv[i+1];
+		//regex chrreg("(chr)([[:digit:]]+)");
+		chrnum = atoi(argv[i+1]);
+		regex chrreg("[[:digit:]]+");
+		//if ( regex_match(chrnum, chrreg) ){
+		if ( regex_match(argv[i+1], chrreg) ){
 			i++;
 		}else{
 			printf("Error: chrnum is required and must be valid\n");
@@ -163,13 +167,14 @@ int main(int argc, char* argv[])
 	printf("\n");
 	timeed = clock();
 	runone(data, minsz, maxsz, penalty, timeed, time0);
-
+	
 	char fout[100];
 	char foutbed[120];
         if(foutpref == "")
             sprintf(fout, "%s.tad", data.fname.c_str());
        	else sprintf(fout, "%s.tad", foutpref);
 	outputTAD(fout, data.tad);
+	
 	if(bedout == true)
 	    if(foutpref == "")
 		sprintf(foutbed, "%s.bed", data.fname.c_str());
