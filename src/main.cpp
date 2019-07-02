@@ -180,17 +180,23 @@ int main(int argc, char* argv[])
 	
 	char fout[100];
 	char foutbed[120];
-        if(foutpref == "")
+        if(foutpref == ""){
             sprintf(fout, "%s.tad", data.fname.c_str());
-       	else sprintf(fout, "%s.tad", foutpref);
+	}
+       	else{ 
+	    sprintf(fout, "%s.tad", foutpref);
+	}
 	outputTAD(fout, data.tad);
 	
-	if(bedout == true)
-	    if(foutpref == "")
+	if(bedout == true){
+	    if(foutpref == ""){
 		sprintf(foutbed, "%s.bed", data.fname.c_str());
-	    else sprintf(foutbed, "%s.bed", foutpref);
+	    }
+	    else{ 
+		sprintf(foutbed, "%s.bed", foutpref);
+	    }
 	    outputBED(foutbed, data.tad, chrnum, chrlength, res);	
-	
+	}
 	printf("Completed!\n\n");fflush(stdout);
 	printf("Output to %s\n\n", fout);fflush(stdout);
 	timeed = clock();
