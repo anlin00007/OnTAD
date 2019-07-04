@@ -104,7 +104,7 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 
 -log2 \<boolean\> if specified, log2(contact frequency) will be used to call TADs.
 
--bedout \<chrnum\> \<int\> The chromosome number and resolution (bp), e.g -bedout 3 198022430 10000 will generate bedfile with coordinates match chr3 under 10Kb resolution under reference genome hg19
+-bedout \<chrnum\> \<int\> The chromosome number, chromosome length and resolution (bp), e.g -bedout 3 198022430 10000 will generate bedfile with coordinates match chr3 at 10Kb resolution under reference genome hg19
 
 -o \<file path\> The file path for the TAD calling results.
 
