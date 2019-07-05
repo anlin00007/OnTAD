@@ -28,7 +28,7 @@ void HiCnorm(vector<vector<double> > &x, int maxsz)
 			ts += tx[j] * tx[j];	
 		}
 		tm /= (double)(l - i);
-		ts = sqrt(max(0.01, ts / (double)(l - i) - tm * tm));
+		ts = sqrt(max(1e-6, ts / (double)(l - i) - tm * tm));
 		for(j = 0; j < l - i; j++) 
 			{	x[j][j+i]=(x[j][j+i]-tm)/ts + 1.;
 				if(i > 0) x[j+i][j]=(x[j+i][j]-tm)/ts + 1.;
