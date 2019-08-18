@@ -1,4 +1,4 @@
-# OnTAD
+# OnTAD <a href="https://zenodo.org/badge/latestdoi/139454457"><img src="https://zenodo.org/badge/139454457.svg" alt="DOI"></a>
 OnTAD is an Optimized Nested TAD caller for Hi-C data
 
 ##
