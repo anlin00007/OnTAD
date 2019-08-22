@@ -5,7 +5,7 @@ OnTAD is an Optimized Nested TAD caller for Hi-C data
 ## Getting Started
 
 ### Prerequisites
-GNU Compiler Collection (https://gcc.gnu.org/) version 7.3.1
+GNU Compiler Collection (https://gcc.gnu.org/) version >=5, with c++11 support
 
 
 ### Installing (Linux environment)
