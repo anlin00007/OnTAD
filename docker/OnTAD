@@ -1,0 +1,81 @@
+#Run OnTAD in a docker container
+REPOSITORY="anlin00007/ontad"
+TAG="v1.2"
+
+#Check if image is available, download it if not.
+image_check="docker images | awk '{print \$1, \$2}' | grep -q '$REPOSITORY $TAG'"
+if ! $(eval $image_check); then
+    echo "OnTAD image not found, downloading...."
+    docker pull $REPOSITORY:$TAG 
+fi
+
+options=("-penalty" "-maxsz" "-minsz" "-o" "-ldiff" "-lsize" "-log2" "-bedout")
+
+read_arg () {
+    local seeking=$1; shift
+    local in=1
+    for element; do
+        if [[ $element == $seeking ]]; then
+            in=0
+            break
+        fi
+    done
+    return $in
+}
+
+option="undef"
+bedout='false'
+inputmat=$1
+argslength=${#@}
+log2='false'
+for (( i=1; i<${argslength}+1; i++ ));
+do
+    arg=${!i}
+    if [ $option != "undef" ] && [ $option != "bedout" ] && [ $option != "log2" ]; then
+               printf -v $option "$arg"
+    elif [ $option == "bedout" ] ; then
+               printf -v chr "$arg"
+                nx=$((i+1))
+                printf -v chrlen ${!nx}
+               bedout='true'
+    fi
+
+    read_arg "$arg" "${options[@]}" && option=${arg//-} || option=undef
+
+    if [ $option == log2 ] ; then
+               log2='true'
+    fi
+done
+
+add_arg() {
+    arg=$1
+    value=$2
+    if [ "$value" != "" ] ; then
+        ontad_command="$ontad_command $arg $value"
+    fi
+}
+
+docker_command="docker run --rm -it --name=OnTAD -v $( cd -P $(dirname $inputmat) && pwd ):/mnt -v $( cd -P $(dirname $o) && pwd):/output"
+ontad_command="OnTAD /mnt/$(basename $inputmat)"
+add_arg -penaly $penalty
+add_arg -maxsz $maxsz
+add_arg -minsz $minsz
+add_arg -o /output/$(basename $o)
+add_arg -ldiff $ldiff
+add_arg -lsize $lsize
+
+if [ $log2 == 'true' ]; then
+        ontad_command="$ontad_command -log2"
+fi
+
+if [ $bedout == 'true' ]; then
+        ontad_command="$ontad_command -bedout $chr $chrlen"
+fi
+
+# run docker command
+docker_command="$docker_command $REPOSITORY:$TAG $ontad_command" 
+echo $ontad_command
+eval $docker_command
+echo "OnTAD docker run is done"
+#docker stop $(docker ps -a -q)
+#docker rm $(docker ps -a -q)
