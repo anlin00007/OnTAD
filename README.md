@@ -48,8 +48,13 @@ Then run the following command to excute OnTAD:
 ```
 bash OnTAD arg1 arg2 ....
 ```
-Note: 1. user may need sudo access to run docker in some environment.
+
+Note: 
+
+      1. user may need sudo access to run docker in some environment.
+
       2. running OnTAD with high resolution data may require large amount of memory. Please make sure you allocated enough memory for docker engine.
+      
       3. advanced users may build images by their own with the docker/Dockerfile. Please check the image name/tag before you run docker/OnTAD.
 
 
