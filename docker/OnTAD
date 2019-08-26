@@ -37,6 +37,8 @@ do
                printf -v chr "$arg"
                 nx=$((i+1))
                 printf -v chrlen ${!nx}
+                nx2=$((i+2))
+                printf -v res ${!nx2}
                bedout='true'
     fi
 
@@ -69,7 +71,7 @@ if [ $log2 == 'true' ]; then
 fi
 
 if [ $bedout == 'true' ]; then
-        ontad_command="$ontad_command -bedout $chr $chrlen"
+        ontad_command="$ontad_command -bedout $chr $chrlen $res"
 fi
 
 # run docker command
