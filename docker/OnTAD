@@ -57,7 +57,7 @@ add_arg() {
 
 docker_command="docker run --rm -it --name=OnTAD -v $( cd -P $(dirname $inputmat) && pwd ):/mnt -v $( cd -P $(dirname $o) && pwd):/output"
 ontad_command="OnTAD /mnt/$(basename $inputmat)"
-add_arg -penaly $penalty
+add_arg -penalty $penalty
 add_arg -maxsz $maxsz
 add_arg -minsz $minsz
 add_arg -o /output/$(basename $o)
