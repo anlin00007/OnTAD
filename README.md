@@ -157,7 +157,7 @@ version 1.1; Added option to output genome browser compatible bed format for vis
 Current version 1.2; removed requirement of GSL package
 
 ## Reference
-Lin An, Tao Yang, Jiahao Yang, Johannes Nuebler, Qunhua Li*, Yu Zhang*. Hierarchical Domain Structure Reveals the Divergence of Activity among TADs and Boundaries, Biorxiv 2018 (https://www.biorxiv.org/content/early/2018/07/03/361147.1)
+Lin An, Tao Yang, Jiahao Yang, Johannes Nuebler, Guanjue Xiang; Ross C. Hardison, Qunhua Li*, Yu Zhang*. OnTAD: Hierarchical Domain Structure Reveals the Divergence of Activity among TADs and Boundaries, Genome Biology (accepted) (Biorxiv: https://www.biorxiv.org/content/10.1101/361147v3)
 
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details
