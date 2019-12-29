@@ -130,7 +130,7 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 
 -log2 \<boolean\> if specified, log2(contact frequency) will be used to call TADs.
 
--bedout \<chrnum\> \<int\> The chromosome number, chromosome length and resolution (bp), e.g -bedout 3 198022430 10000 will generate bedfile with coordinates match chr3 at 10Kb resolution under reference genome hg19
+-bedout \<chrnum\> \<int\> The chromosome number, chromosome length and resolution (bp), e.g -bedout 3 198022430 10000 will generate bedfile with coordinates match chr3 at 10Kb resolution under reference genome hg19. ##Note: the function of chromosome length is to define the maximum position for the TAD at the end of input chromosome.
 
 -o \<file path\> The file path for the TAD calling results.
 
@@ -157,7 +157,7 @@ version 1.1; Added option to output genome browser compatible bed format for vis
 Current version 1.2; removed requirement of GSL package
 
 ## Reference
-Lin An, Tao Yang, Jiahao Yang, Johannes Nuebler, Guanjue Xiang, Ross C. Hardison, Qunhua Li*, Yu Zhang*. OnTAD: Hierarchical Domain Structure Reveals the Divergence of Activity among TADs and Boundaries, Genome Biology (accepted) (Biorxiv: https://www.biorxiv.org/content/10.1101/361147v3)
+Lin An, Tao Yang, Jiahao Yang, Johannes Nuebler, Guanjue Xiang, Ross C. Hardison, Qunhua Li*, Yu Zhang*. OnTAD: Hierarchical Domain Structure Reveals the Divergence of Activity among TADs and Boundaries, Genome Biology 2019 (https://doi.org/10.1186/s13059-019-1893-y)
 
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details
