@@ -235,7 +235,7 @@ void outputTAD(char *fname, TAD const &tad)
 	fclose(f);
 }
 
-void outputBED(char *fnamebed, TAD const &tad, int chrnum, int chrlength,int res)
+void outputBED(char *fnamebed, TAD const &tad, char *chrnum, int chrlength,int res)
 {
         int j;
 	int tl;
@@ -247,7 +247,7 @@ void outputBED(char *fnamebed, TAD const &tad, int chrnum, int chrlength,int res
 	color_list[4] = "253,192,134";
 	color_list[5] = "255,0,0";
         FILE *bedf = fopen(fnamebed, "w");
-	fprintf(bedf,"track name=\"OnTAD chr%d\" description=\"OnTAD chr%d\" visibility=2 itemRgb=\"On\"\n", chrnum, chrnum);
+	fprintf(bedf,"track name=\"OnTAD %s\" description=\"OnTAD %s\" visibility=2 itemRgb=\"On\"\n", chrnum, chrnum);
         for(j = 1; j < (int)( tad.bound.size() ); j++)
         {       
 		if (tad.level[j] >=5) 
@@ -258,7 +258,7 @@ void outputBED(char *fnamebed, TAD const &tad, int chrnum, int chrlength,int res
 		   endp = chrlength;
 		else
 		   endp = (tad.bound[j][1] + 1)*res;
-		fprintf(bedf, "chr%d\t%d\t%d\t%d\t0\t.\t%d\t%d\t%s\n", chrnum, (tad.bound[j][0] + 1)*res, endp, j, (tad.bound[j][0] + 1)*res, endp, color_list[tl]);
+		fprintf(bedf, "%s\t%d\t%d\t%d\t0\t.\t%d\t%d\t%s\n", chrnum, (tad.bound[j][0] + 1)*res, endp, j, (tad.bound[j][0] + 1)*res, endp, color_list[tl]);
         }
         fclose(bedf);
 }

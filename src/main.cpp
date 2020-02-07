@@ -4,6 +4,7 @@
 #include "./step4.h"
 #include "./common.h"
 #include <regex>
+#include <algorithm>
 
 using namespace std;
 clock_t time0, timest, timeed;
@@ -55,8 +56,8 @@ int main(int argc, char* argv[])
 	string fin;
 	char const *foutpref = "";
 	bool takelog2 = false;
-	//char *chrnum;
-	int chrnum;
+	char *chrnum;
+	//int chrnum;
 	int res;
 	int chrlength;
 	bool bedout = false;
@@ -96,12 +97,12 @@ int main(int argc, char* argv[])
             }
 	    else if(strcmp(argv[i], "-bedout") == 0)
 	    {   bedout = true;
-		//chrnum = argv[i+1];
-		//regex chrreg("(chr)([[:digit:]]+)");
-		chrnum = atoi(argv[i+1]);
-		regex chrreg("[[:digit:]]+");
-		//if ( regex_match(chrnum, chrreg) ){
-		if ( regex_match(argv[i+1], chrreg) ){
+		chrnum = argv[i+1];
+		regex chrreg("(chr)(.*)");
+		//chrnum = atoi(argv[i+1]);
+		//regex chrreg("[[:digit:]]+");
+		if ( regex_match(chrnum, chrreg) ){
+		//if ( regex_match(argv[i+1], chrreg) ){
 			i++;
 		}else{
 			printf("Error: chrnum is required and must be valid\n");
@@ -178,8 +179,8 @@ int main(int argc, char* argv[])
 	timeed = clock();
 	runone(data, minsz, maxsz, penalty, timeed, time0);
 	
-	char fout[100];
-	char foutbed[120];
+	char fout[std::max(strlen(foutpref),strlen(data.fname.c_str()))+10];
+	char foutbed[std::max(strlen(foutpref),strlen(data.fname.c_str()))+10];
         if(foutpref == ""){
             sprintf(fout, "%s.tad", data.fname.c_str());
 	}
