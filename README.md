@@ -71,7 +71,7 @@ TAD calling results will be saved in OnTAD_KRnorm_pen0.1_max200_chr18.tad file.
 New option in version 1.2 -- output TADs in bed format for genome browser virualization:
 
 ```
-OnTAD chr18_KR.matrix -penalty 0.1 -maxsz 200 -o OnTAD_KRnorm_pen0.1_max200_chr18 -bedout 18 78077248 10000
+OnTAD chr18_KR.matrix -penalty 0.1 -maxsz 200 -o OnTAD_KRnorm_pen0.1_max200_chr18 -bedout chr18 78077248 10000
 ```
 A OnTAD_KRnorm_pen0.1_max200_chr18.bed file will be generated.
 
@@ -130,7 +130,7 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 
 -log2 \<boolean\> if specified, log2(contact frequency) will be used to call TADs.
 
--bedout \<chrnum\> \<int\> The chromosome number, chromosome length and resolution (bp), e.g -bedout 3 198022430 10000 will generate bedfile with coordinates match chr3 at 10Kb resolution under reference genome hg19. ##Note: the function of chromosome length is to define the maximum position for the TAD at the end of input chromosome.
+-bedout \<chrnum\> \<int\> The chromosome number, chromosome length and resolution (bp), e.g -bedout chr3 198022430 10000 will generate bedfile with coordinates match chr3 at 10Kb resolution under reference genome hg19. ##Note: the function of chromosome length is to define the maximum position for the TAD at the end of input chromosome.
 
 -o \<file path\> The file path for the TAD calling results.
 
@@ -154,7 +154,9 @@ OnTAD <Hi-C matrix> [-penalty <float>] [-maxsz <int>] [-minsz <int>] [-ldiff <fl
 ## Versioning
 version 1.1; Added option to output genome browser compatible bed format for visualization
 
-Current version 1.2; removed requirement of GSL package
+version 1.2; removed requirement of GSL package
+
+Current version 1.3; minor fix on parameters for generating bed file
 
 ## Reference
 Lin An, Tao Yang, Jiahao Yang, Johannes Nuebler, Guanjue Xiang, Ross C. Hardison, Qunhua Li*, Yu Zhang*. OnTAD: Hierarchical Domain Structure Reveals the Divergence of Activity among TADs and Boundaries, Genome Biology 2019 (https://doi.org/10.1186/s13059-019-1893-y)
