@@ -22,3 +22,12 @@ void printProgress(double percentage)
     fflush (stdout);
 }
 
+bool hasEnding (string const &fullString, string const &ending) {
+    if (fullString.length() >= ending.length()) {
+        return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
+    } else {
+        return false;
+    }
+}
+
+

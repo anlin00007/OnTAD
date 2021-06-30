@@ -1,4 +1,5 @@
 #include "step1.h"
+#include <iostream>
 /*---------------------------------------------------------------*/
 /* Step1: read input matrix
  *    Input: matrix file
@@ -31,7 +32,7 @@ void loadMatrix(char const *fname, vector<vector<double> > &x, int maxsz) //read
 
 		vector<double> tx(L, 0);
 		k = 0;
-		for(j = 0; j < l; j++) 
+		for(j = 0; j < l; j++)
 		{	if(L == 0) 
 			{	if(k > maxsz) tx.push_back(0);
 				else tx.push_back(atof(&tmp[j]));
@@ -56,4 +57,54 @@ void loadMatrix(char const *fname, vector<vector<double> > &x, int maxsz) //read
         }
 	fclose(f);
 	delete []tmp;
+}
+
+/**
+ * Load matrix from .hic file, also only read values near diagonal
+ * 
+*/
+void loadMatrixFromHiC(
+	string fname,
+	vector<vector<double> > &x,
+	int maxsz,
+	string hic_norm,
+	int resolution,
+	char const* chrnum,
+	int chrlength)
+{
+	string matrixType = "observed";
+	string unit = "BP";
+	vector<contactRecord> records;
+
+	string chr_name = string(chrnum);
+	string chrloc = chr_name + ":0" + ":" + to_string(chrlength);
+	records = straw(matrixType, hic_norm, fname, chrloc, chrloc, unit, (int32_t)resolution);
+
+	int L;
+	if ((chrlength % resolution) == 0) {
+		L = chrlength / resolution;
+	} else {
+		L = (chrlength / resolution) + 1;
+	}
+	std::cout << L << std::endl;
+
+	for (int i = 0; i < L; i++) {
+		vector<double> tx(L, 0);
+		x.push_back(tx);
+	}
+
+	size_t length = records.size();
+	int start = 0, end = 0;
+	int print_per_count = length / 20;
+	for (int i = 0; i < length; i++) {
+		start = records[i].binX / resolution;
+		end = records[i].binY / resolution;
+		if (abs(end - start) <= maxsz) {
+			x[start][end] = records[i].counts;
+		}
+		if ((i % print_per_count) == 0) {
+			printProgress((double)i / (double)length);
+		}
+	}
+	printProgress(1.0);
 }
